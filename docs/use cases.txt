@@ -1,0 +1,10 @@
+UC 1
+	User provides a program source code for certain task. The source code can be written in any of available programming
+	languages. User reads input parameters from standart input and writes results to the standart output. The system rates provided solutions
+	by following criterias - results correctness and quickness.
+UC 2
+	User request his exercise solution statistics. The systems generates report based on users completed tasks
+UC 3
+	User (administrator) adds new task, removes existing task, edits existing task
+
+	
