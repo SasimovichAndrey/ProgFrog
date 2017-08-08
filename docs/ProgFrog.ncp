@@ -1,0 +1,179 @@
+<Project>
+  <Name>ProgFrog</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Untitled</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>CSharpProgTaskRunner</Name>
+        <Access>Public</Access>
+        <Location left="280" top="904" />
+        <Size width="256" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public RunnedTaskResult Run(ProgTask task)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IProgTaskRunner</Name>
+        <Access>Public</Access>
+        <Location left="650" top="378" />
+        <Size width="242" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">RunnedTaskResult Run(ProgTask task, string code)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>ProgTask</Name>
+        <Access>Public</Access>
+        <Location left="924" top="51" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IProgTaskRepository</Name>
+        <Access>Public</Access>
+        <Location left="238" top="98" />
+        <Size width="162" height="216" />
+        <Collapsed>True</Collapsed>
+        <Member type="Method">ProgTask GetProgTaskById(int id)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>FileProgTaskRepository</Name>
+        <Access>Public</Access>
+        <Location left="210" top="204" />
+        <Size width="215" height="216" />
+        <Collapsed>True</Collapsed>
+        <Member type="Method">public ProgTask GetProgTaskById(int id)</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IOutputReader</Name>
+        <Access>Public</Access>
+        <Location left="998" top="763" />
+        <Size width="162" height="155" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">string Read()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>BaseTaskRunner</Name>
+        <Access>Public</Access>
+        <Location left="280" top="701" />
+        <Size width="268" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected IOutputReader _outputReader</Member>
+        <Member type="Field">protected IInputWriter _inputWriter</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>StandardOutputStreamReader</Name>
+        <Access>Public</Access>
+        <Location left="998" top="1061" />
+        <Size width="162" height="102" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IInputWriter</Name>
+        <Access>Public</Access>
+        <Location left="1336" top="689" />
+        <Size width="174" height="144" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Write(string input)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>StandardInputStreamWriter</Name>
+        <Access>Public</Access>
+        <Location left="1325" top="1061" />
+        <Size width="162" height="102" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="1" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1020</X>
+          <Y>523</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="3" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>491</X>
+          <Y>190</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>806</X>
+          <Y>105</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="4" second="3">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="0" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="6" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>433</X>
+          <Y>675</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>735</X>
+          <Y>675</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="6" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>574</X>
+          <Y>778</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+      <Relationship type="Realization" first="7" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="9" second="8">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="6" second="8">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>573</X>
+          <Y>760</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1224</X>
+          <Y>699</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Association</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>

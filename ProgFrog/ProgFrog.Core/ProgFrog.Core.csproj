@@ -43,9 +43,15 @@
     <Compile Include="Model\ParamsAndResults.cs" />
     <Compile Include="Model\ProgrammingTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskRunning\Compilers\ICompiler.cs" />
+    <Compile Include="TaskRunning\IInputWriter.cs" />
+    <Compile Include="TaskRunning\IOutputReader.cs" />
     <Compile Include="TaskRunning\IProgTaskRunner.cs" />
     <Compile Include="TaskRunning\PythonTaskRunner.cs" />
     <Compile Include="TaskRunning\RunnedTaskResult.cs" />
+    <Compile Include="TaskRunning\Runners\CSharpTaskRunner.cs" />
+    <Compile Include="TaskRunning\StandardInputStreamWriter.cs" />
+    <Compile Include="TaskRunning\StandardOutputStreamReader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
