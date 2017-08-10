@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgFrog.Core.TaskRunning.Compilers
+namespace ProgFrog.Core.TaskRunning
 {
-    public interface ICompiler
+    public interface IOutputReader : IRunnerVisitor
     {
-        string Compile(string sourceCodeFileName);
+        string Read();
     }
 }
