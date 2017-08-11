@@ -27,7 +27,7 @@
         <ListBox SelectedIndex="0" Height="Auto" x:Name="TasksList" ItemsSource="{Binding ProgrammingTasks}" ItemTemplate="{StaticResource TaskListItemTemplate}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="TasksList_SelectionChanged">
         </ListBox>
         <TextBlock Text="{Binding ElementName=TasksList, Path=SelectedItem.Description}" Grid.Column="0" Grid.Row="1"></TextBlock>
-        <ListBox SelectedIndex="0"  ItemsSource="{Binding ProgrammingLanguages}" Grid.Column="1" Grid.Row="2" ></ListBox>
+        <ListBox SelectedIndex="0"  ItemsSource="{Binding ProgrammingLanguages}" Grid.Column="1" Grid.Row="2"  SelectionChanged="ProgLangList_SelectionChanged"></ListBox>
         <TextBlock Text="{Binding Path=TaskStatus, Mode=TwoWay}" Grid.Column="1" Grid.Row="3"></TextBlock>
         <TextBox Text="{Binding Path=UserCode}" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" VerticalScrollBarVisibility="Visible"
      AcceptsReturn="True"></TextBox>

@@ -56,6 +56,7 @@
     <Compile Include="Tests\JsonSerializerTests.cs" />
     <Compile Include="Tests\OutputReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\PythonTaskRunnerTests.cs" />
     <Compile Include="Tests\ResultsCheckerTests.cs" />
     <Compile Include="Tests\TaskFileRepositoryTests.cs" />
     <Compile Include="TestData\HelloWorld.cs">

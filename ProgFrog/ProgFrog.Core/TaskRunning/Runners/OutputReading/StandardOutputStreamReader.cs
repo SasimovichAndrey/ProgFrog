@@ -32,5 +32,10 @@ namespace ProgFrog.Core.TaskRunning
         {
             Process = runner.Process;
         }
+
+        public void Configure(PythonTaskRunner runner)
+        {
+            Process = runner.Process;
+        }
     }
 }

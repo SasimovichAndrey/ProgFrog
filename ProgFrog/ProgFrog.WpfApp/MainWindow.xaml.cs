@@ -42,6 +42,10 @@ namespace ProgFrog.WpfApp
             var taskRunnerProvider = new TaskRunnerProvider();
             string csharpCompilerPath = @"c:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe";
             taskRunnerProvider.RegisterRunner(new CSharpTaskRunner(new CSharpCompiler(csharpCompilerPath), new StandardInputStreamWriter(), new StandardOutputStreamReader()), ProgrammingLanguageEnum.CSharp);
+
+            var pyInterpreterPath = @"c:\Python27\python.exe";
+            taskRunnerProvider.RegisterRunner(new PythonTaskRunner(pyInterpreterPath, new StandardInputStreamWriter(), new StandardOutputStreamReader()), ProgrammingLanguageEnum.Python);
+
             var resultsChecker = new ResultsChecker();
             var vm = new DoTasksViewModel(taskRunnerProvider, repo, resultsChecker);
             this.DataContext = vm;
@@ -52,6 +56,11 @@ namespace ProgFrog.WpfApp
         public void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ViewModel.SelectedTask = ((ListBox)sender).SelectedItem as ProgrammingTask;
+        }
+
+        public void ProgLangList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModel.ProgrammingLanguage = (ProgrammingLanguageEnum)((ListBox)sender).SelectedItem;
         }
 
         public async void Button_Click(object sender, RoutedEventArgs e)
