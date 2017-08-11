@@ -28,12 +28,7 @@ namespace ProgFrog.Core.TaskRunning
             Process.StandardInput.Write(inp);
         }
 
-        public void Configure(CSharpTaskRunner runner)
-        {
-            Process = runner.Process;
-        }
-
-        public void Configure(PythonTaskRunner runner)
+        public void Configure(BaseTaskRunner runner)
         {
             Process = runner.Process;
         }

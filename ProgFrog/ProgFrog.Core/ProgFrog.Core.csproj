@@ -55,6 +55,8 @@
     <Compile Include="TaskRunning\Compilers\CompilationFailedException.cs" />
     <Compile Include="TaskRunning\Compilers\CSharpCompiler.cs" />
     <Compile Include="TaskRunning\Compilers\ICompiler.cs" />
+    <Compile Include="TaskRunning\Runners\BaseTaskRunner.cs" />
+    <Compile Include="TaskRunning\Runners\ExecRunResults.cs" />
     <Compile Include="TaskRunning\Runners\InputWriting\IInputWriter.cs" />
     <Compile Include="TaskRunning\Runners\OutputReading\IOutputReader.cs" />
     <Compile Include="TaskRunning\Runners\IProgTaskRunner.cs" />

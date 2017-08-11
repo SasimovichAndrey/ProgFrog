@@ -28,12 +28,7 @@ namespace ProgFrog.Core.TaskRunning
             return Process.StandardOutput.ReadToEnd();
         }
 
-        public void Configure(CSharpTaskRunner runner)
-        {
-            Process = runner.Process;
-        }
-
-        public void Configure(PythonTaskRunner runner)
+        public void Configure(BaseTaskRunner runner)
         {
             Process = runner.Process;
         }
