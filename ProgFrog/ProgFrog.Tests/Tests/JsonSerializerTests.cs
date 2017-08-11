@@ -28,10 +28,10 @@ namespace ProgFrog.Tests
                 ParamsAndResults = new List<ParamsAndResults>()
             };
 
-            obj.ParamsAndResults.Add(new ParamsAndResults { Params = "prms1", Results = "res1" });
+            obj.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "prms1" }, Results = "res1" });
 
             var serialized = _serializer.Serialize(obj);
-            var serializedExpected = "{\"Description\":\"test\",\"ParamsAndResults\":[{\"Params\":\"prms1\",\"Results\":\"res1\"}]}";
+            var serializedExpected = "{\"Description\":\"test\",\"ParamsAndResults\":[{\"Params\":[\"prms1\"],\"Results\":\"res1\"}]}";
 
             Assert.AreEqual(serializedExpected, serialized);
         }
@@ -46,9 +46,9 @@ namespace ProgFrog.Tests
                 ParamsAndResults = new List<ParamsAndResults>()
             };
 
-            obj.ParamsAndResults.Add(new ParamsAndResults { Params = "prms1", Results = "res1" });
+            obj.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "prms1" }, Results = "res1" });
 
-            var serialized= "{\"Description\":\"test\",\"ParamsAndResults\":[{\"Params\":\"prms1\",\"Results\":\"res1\"}]}";
+            var serialized= "{\"Description\":\"test\",\"ParamsAndResults\":[{\"Params\":[\"prms1\"],\"Results\":\"res1\"}]}";
             var deserialized = _serializer.Deserialize(serialized);
 
             Assert.AreEqual(obj, deserialized);

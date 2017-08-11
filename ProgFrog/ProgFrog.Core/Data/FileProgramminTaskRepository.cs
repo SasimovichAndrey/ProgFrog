@@ -18,6 +18,21 @@ namespace ProgFrog.Core.Data
             _directoryPath = directoryPath;
         }
 
+        public async Task<ProgrammingTask> Create(ProgrammingTask task)
+        {
+            var taskId = Guid.NewGuid();
+            task.Identifier = new GuidIdentifier(taskId);
+            var serialized = _serializer.Serialize(task);
+
+            var newFilePath = Path.Combine(_directoryPath, $"{taskId}.pt");
+            using(var writer = new StreamWriter(File.Create(newFilePath)))
+            {
+                await writer.WriteAsync(serialized);
+            }
+
+            return task;
+        }
+
         public async Task<IEnumerable<ProgrammingTask>> GetAll()
         {
             var fileNames = Directory.EnumerateFiles(_directoryPath, "*.pt");

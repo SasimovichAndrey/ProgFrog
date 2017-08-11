@@ -1,4 +1,5 @@
-﻿using ProgFrog.Core.Data;
+﻿using AurelienRibon.Ui.SyntaxHighlightBox;
+using ProgFrog.Core.Data;
 using ProgFrog.Core.Data.Serialization;
 using ProgFrog.Core.Model;
 using ProgFrog.Core.TaskRunning;
@@ -44,6 +45,14 @@ namespace ProgFrog.WpfApp.ViewModel
         }
 
         public ObservableCollection<ProgrammingLanguageEnum> ProgrammingLanguages { get; set; } = new ObservableCollection<ProgrammingLanguageEnum>();
+
+        public IHighlighter CodeHighlighter
+        {
+            get
+            {
+                return HighlighterManager.Instance.Highlighters["CSharp"];
+            }
+        }
 
         public ProgrammingLanguageEnum ProgrammingLanguage
         {

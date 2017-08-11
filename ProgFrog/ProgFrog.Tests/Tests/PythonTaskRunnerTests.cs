@@ -27,7 +27,7 @@ namespace ProgFrog.Tests.Tests
                 Description = "x+2",
                 ParamsAndResults = new List<ParamsAndResults>()
             };
-            task.ParamsAndResults.Add(new ParamsAndResults { Params = "3", Results = "5" });
+            task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "3" }, Results = "5" });
 
 
             string code = @"x = input()

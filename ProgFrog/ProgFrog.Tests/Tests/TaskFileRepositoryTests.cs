@@ -19,11 +19,11 @@ namespace ProgFrog.Tests
         [SetUp]
         public void Setup()
         {
-            this._repo = new FileProgramminTaskRepository(new JsonSerializer<ProgrammingTask>(), Path.Combine(GetTestDataDirectoryPath(), "ProgTasks"));
+            this._repo = new FileProgramminTaskRepository(new JsonSerializer<ProgrammingTask>(), GetProgTasksDataDir());
         }
 
         [Test]
-        public async Task Test()
+        public async Task TestGetAll()
         {
             var expected = new List<ProgrammingTask>();
             var first = new ProgrammingTask
@@ -33,7 +33,7 @@ namespace ProgFrog.Tests
                 ParamsAndResults = new List<ParamsAndResults>()
             };
             expected.Add(first);
-            first.ParamsAndResults.Add(new ParamsAndResults { Params = "prms1", Results = "res1" });
+            first.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "prms1" }, Results = "res1" });
 
             var second = new ProgrammingTask
             {
@@ -42,7 +42,7 @@ namespace ProgFrog.Tests
                 ParamsAndResults = new List<ParamsAndResults>()
             };
             expected.Add(second);
-            second.ParamsAndResults.Add(new ParamsAndResults { Params = "prms2", Results = "res2" });
+            second.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "prms2" }, Results = "res2" });
 
             var actual = await _repo.GetAll();
 
@@ -54,6 +54,41 @@ namespace ProgFrog.Tests
 
             Assert.AreEqual(second, actual.ElementAt(1));
             Assert.AreEqual(second.Identifier.StringPresentation, actual.ElementAt(1).Identifier.StringPresentation);
+        }
+
+        [Test]
+        public async Task TestCreate()
+        {
+            var newTask = new ProgrammingTask
+            {
+                Description = "x + y",
+                Identifier = null,
+                ParamsAndResults = new List<ParamsAndResults>() { new ParamsAndResults { Params = new List<string>() { "3", "4" }, Results = "7" } }
+            };
+
+            newTask = await _repo.Create(newTask);
+
+            Assert.IsNotNull(newTask.Identifier);
+
+            var newFileExpectedLocation = Path.Combine(GetProgTasksDataDir(), newTask.Identifier.StringPresentation + ".pt");
+            _filesToCleanup.Add(newFileExpectedLocation);
+
+            FileAssert.Exists(newFileExpectedLocation);
+            FileAssert.AreEqual(Path.Combine(GetProgTasksDataDir(), "FilesToCompare", "testCreate.pt"), newFileExpectedLocation);
+        }
+
+        private string GetProgTasksDataDir()
+        {
+            return Path.Combine(GetTestDataDirectoryPath(), "ProgTasks");
+        }
+
+        [TearDown]
+        public void Cleanup()
+        {
+            foreach(var file in _filesToCleanup)
+            {
+                File.Delete(file);
+            }
         }
     }
 }

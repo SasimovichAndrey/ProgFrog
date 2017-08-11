@@ -73,6 +73,9 @@
     <None Include="TestData\ProgTasks\462751a2-faf3-4342-a18d-1bbc12be0a86.pt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\ProgTasks\FilesToCompare\testCreate.pt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProgFrog.Core\ProgFrog.Core.csproj">

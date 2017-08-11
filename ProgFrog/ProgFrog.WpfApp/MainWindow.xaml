@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cbox="clr-namespace:AurelienRibon.Ui.SyntaxHighlightBox;assembly=AurelienRibon.Ui.SyntaxHighlightBox"
         xmlns:local="clr-namespace:ProgFrog.WpfApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="825">
@@ -24,13 +25,18 @@
             <RowDefinition />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox SelectedIndex="0" Height="Auto" x:Name="TasksList" ItemsSource="{Binding ProgrammingTasks}" ItemTemplate="{StaticResource TaskListItemTemplate}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="TasksList_SelectionChanged">
+        <ListBox SelectedIndex="0" Height="Auto" x:Name="TasksList" ItemsSource="{Binding ProgrammingTasks}" 
+                 SelectedItem="{Binding Path=SelectedTask}"  
+                 ItemTemplate="{StaticResource TaskListItemTemplate}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
         </ListBox>
         <TextBlock Text="{Binding ElementName=TasksList, Path=SelectedItem.Description}" Grid.Column="0" Grid.Row="1"></TextBlock>
-        <ListBox SelectedIndex="0"  ItemsSource="{Binding ProgrammingLanguages}" Grid.Column="1" Grid.Row="2"  SelectionChanged="ProgLangList_SelectionChanged"></ListBox>
+        <ListBox x:Name="progLangList" SelectedIndex="0"  
+                 SelectedItem="{Binding Path=ProgrammingLanguage}"
+                 ItemsSource="{Binding ProgrammingLanguages}" Grid.Column="1" Grid.Row="2" SelectionChanged="ProgLangList_SelectionChanged"></ListBox>
         <TextBlock Text="{Binding Path=TaskStatus, Mode=TwoWay}" Grid.Column="1" Grid.Row="3"></TextBlock>
-        <TextBox Text="{Binding Path=UserCode}" Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" VerticalScrollBarVisibility="Visible"
-     AcceptsReturn="True"></TextBox>
+        <!--<RichTextBox Text="{Binding Path=UserCode}" VerticalScrollBarVisibility="Visible"
+     AcceptsReturn="True"></RichTextBox>-->
+        <cbox:SyntaxHighlightBox Text="{Binding Path=UserCode}" IsLineNumbersMarginVisible="False" x:Name="codeBox"  Grid.Column="0" Grid.Row="2" Grid.RowSpan="2"/>
         <Button Click="Button_Click" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">Проверить</Button>
     </Grid>
 </Window>

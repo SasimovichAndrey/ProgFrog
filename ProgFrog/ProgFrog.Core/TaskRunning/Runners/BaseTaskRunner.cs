@@ -49,8 +49,7 @@ namespace ProgFrog.Core.TaskRunning.Runners
                     _inpWriter.Configure(this);
                     _outReader.Configure(this);
 
-                    var strParamsSplittedByNewLine = inpParam.Params.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-                    foreach (var prm in strParamsSplittedByNewLine)
+                    foreach (var prm in inpParam.Params)
                     {
                         _inpWriter.Write(prm);
                         _inpWriter.Write(Environment.NewLine);

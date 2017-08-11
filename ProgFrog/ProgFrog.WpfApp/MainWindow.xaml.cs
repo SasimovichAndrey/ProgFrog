@@ -15,6 +15,7 @@ using System.ComponentModel;
 using ProgFrog.Core.Data.Serialization;
 using ProgFrog.WpfApp.ViewModel;
 using ProgFrog.WpfApp.Infrastructure;
+using AurelienRibon.Ui.SyntaxHighlightBox;
 
 namespace ProgFrog.WpfApp
 {
@@ -25,6 +26,8 @@ namespace ProgFrog.WpfApp
     {
         private DoTasksViewModel ViewModel;
 
+        private Dictionary<ProgrammingLanguageEnum, IHighlighter> _highlightersMappings = new Dictionary<ProgrammingLanguageEnum, IHighlighter>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +37,9 @@ namespace ProgFrog.WpfApp
 
         private void Initialize()
         {
+            _highlightersMappings[ProgrammingLanguageEnum.CSharp] = HighlighterManager.Instance.Highlighters["CSharp"];
+            _highlightersMappings[ProgrammingLanguageEnum.Python] = HighlighterManager.Instance.Highlighters["Python"];
+
             IModelSerializer<ProgrammingTask> serializer = new JsonSerializer<ProgrammingTask>();
             var dataDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "App_Data");
             var repo = new FileProgramminTaskRepository(serializer, dataDirectory);
@@ -53,14 +59,18 @@ namespace ProgFrog.WpfApp
             this.Loaded += vm.Initialize;
         }
 
-        public void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ViewModel.SelectedTask = ((ListBox)sender).SelectedItem as ProgrammingTask;
-        }
-
         public void ProgLangList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ViewModel.ProgrammingLanguage = (ProgrammingLanguageEnum)((ListBox)sender).SelectedItem;
+            var curLang = (ProgrammingLanguageEnum)((ListBox)sender).SelectedItem;
+
+            if (_highlightersMappings.ContainsKey(curLang))
+            {
+                codeBox.CurrentHighlighter = _highlightersMappings[curLang];
+            }
+            else
+            {
+                codeBox.CurrentHighlighter = null;
+            }
         }
 
         public async void Button_Click(object sender, RoutedEventArgs e)

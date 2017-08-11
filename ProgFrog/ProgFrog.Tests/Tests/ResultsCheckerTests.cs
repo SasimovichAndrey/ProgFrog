@@ -23,7 +23,7 @@ namespace ProgFrog.Tests
             var firstTestRes = "right answer";
             var prmsAndRes1 = new ParamsAndResults
             {
-                Params = "test",
+                Params = new List<string>() { "test" },
                 Results = firstTestRes
             };
             var results = new List<RunnedTestResult>();
@@ -51,7 +51,7 @@ namespace ProgFrog.Tests
             var firstTestRes = "right answer";
             var prmsAndRes1 = new ParamsAndResults
             {
-                Params = "test",
+                Params = new List<string>() { "test" },
                 Results = firstTestRes
             };
             var results = new List<RunnedTestResult>();
@@ -79,13 +79,13 @@ namespace ProgFrog.Tests
             var firstTestRes = "right answer";
             var prmsAndRes1 = new ParamsAndResults
             {
-                Params = "test",
+                Params = new List<string>() { "test" },
                 Results = firstTestRes
             };
             var secondTestRes = "right answer 2";
             var prmsAndRes2 = new ParamsAndResults
             {
-                Params = "test 2",
+                Params = new List<string>() { "test 2" },
                 Results = secondTestRes
             };
             var results = new List<RunnedTestResult>();
@@ -120,13 +120,13 @@ namespace ProgFrog.Tests
             var firstTestRes = "right answer";
             var prmsAndRes1 = new ParamsAndResults
             {
-                Params = "test",
+                Params = new List<string>() { "test" },
                 Results = firstTestRes
             };
             var secondTestRes = "right answer 2";
             var prmsAndRes2 = new ParamsAndResults
             {
-                Params = "test 2",
+                Params = new List<string>() { "test 2" },
                 Results = secondTestRes
             };
             var results = new List<RunnedTestResult>();

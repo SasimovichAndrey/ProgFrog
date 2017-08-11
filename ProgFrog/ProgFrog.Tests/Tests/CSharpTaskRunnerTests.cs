@@ -29,7 +29,7 @@ namespace ProgFrog.Tests
                 Description = "x+2",
                 ParamsAndResults = new List<ParamsAndResults>()
             };
-            task.ParamsAndResults.Add(new ParamsAndResults { Params = "3", Results = "5" });
+            task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "3" }, Results = "5" });
 
 
             string code = @"using System;
@@ -64,7 +64,7 @@ namespace ProgFrog.Tests
                 Description = "x+y",
                 ParamsAndResults = new List<ParamsAndResults>()
             };
-            task.ParamsAndResults.Add(new ParamsAndResults { Params = $"3{Environment.NewLine}4" });
+            task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "3", "4" } });
 
 
             string code = @"using System;
@@ -100,8 +100,8 @@ namespace ProgFrog.Tests
                 Description = "x+2",
                 ParamsAndResults = new List<ParamsAndResults>()
             };
-            task.ParamsAndResults.Add(new ParamsAndResults { Params = "3"});
-            task.ParamsAndResults.Add(new ParamsAndResults { Params = "4"});
+            task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "3" } });
+            task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "4" } });
 
 
             string code = @"using System;
