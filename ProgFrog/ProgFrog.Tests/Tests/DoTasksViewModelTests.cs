@@ -1,16 +1,11 @@
 ﻿using Moq;
 using NUnit.Framework;
-using ProgFrog.Core.Data;
-using ProgFrog.Core.Model;
-using ProgFrog.Core.TaskRunning;
-using ProgFrog.Core.TaskRunning.ResultsChecking;
-using ProgFrog.Core.TaskRunning.Runners;
-using ProgFrog.WpfApp.Infrastructure;
+using ProgFrog.Interface.Data;
+using ProgFrog.Interface.Model;
+using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.ResultsChecking;
+using ProgFrog.Interface.TaskRunning.Runners;
 using ProgFrog.WpfApp.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProgFrog.Tests.Tests

@@ -83,6 +83,10 @@
       <Project>{3EBD17A2-14F9-49D7-8195-E96BC0E5DA2F}</Project>
       <Name>ProgFrog.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProgFrog.Interface\ProgFrog.Interface.csproj">
+      <Project>{C15CAB14-F6A3-4401-8573-76D54E72C650}</Project>
+      <Name>ProgFrog.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProgFrog.WpfApp\ProgFrog.WpfApp.csproj">
       <Project>{63C1FC9B-C748-4152-96A1-F9FFAAF28B5F}</Project>
       <Name>ProgFrog.WpfApp</Name>

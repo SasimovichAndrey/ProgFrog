@@ -1,4 +1,5 @@
-﻿using ProgFrog.Core.TaskRunning.Compilers.Exceptions;
+﻿using ProgFrog.Interface.TaskRunning.Compilers;
+using ProgFrog.Interface.TaskRunning.Compilers.Exceptions;
 using System;
 using System.Diagnostics;
 using System.IO;

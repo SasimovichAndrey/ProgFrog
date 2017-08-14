@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using ProgFrog.Core.Model;
 using System.IO;
 using System.Threading.Tasks;
-using ProgFrog.Core.Data.Serialization;
+using ProgFrog.Interface.Data.Serialization;
+using ProgFrog.Interface.Data;
+using ProgFrog.Interface.Model;
 
 namespace ProgFrog.Core.Data
 {

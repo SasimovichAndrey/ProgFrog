@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ProgFrog.Interface.TaskRunning.Runners;
 using System.IO;
 
 namespace ProgFrog.Core.TaskRunning.Runners

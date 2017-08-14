@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.ResultsChecking;
+using System;
 using System.Collections.Generic;
 
 namespace ProgFrog.Core.TaskRunning.ResultsChecking

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using ProgFrog.Core.Data;
 using ProgFrog.Core.Data.Serialization;
-using ProgFrog.Core.Model;
+using ProgFrog.Interface.Data.Serialization;
+using ProgFrog.Interface.Model;
 using System;
 using System.Collections.Generic;
 

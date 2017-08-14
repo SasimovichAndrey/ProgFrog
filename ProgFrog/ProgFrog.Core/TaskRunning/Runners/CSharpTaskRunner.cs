@@ -1,10 +1,8 @@
-﻿using System;
-using ProgFrog.Core.Model;
-using ProgFrog.Core.TaskRunning.Compilers;
-using System.IO;
+﻿using System.IO;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using ProgFrog.Core.TaskRunning.Compilers.Exceptions;
+using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.Compilers;
+using ProgFrog.Interface.TaskRunning.Runners;
 
 namespace ProgFrog.Core.TaskRunning.Runners
 {

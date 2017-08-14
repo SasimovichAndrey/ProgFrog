@@ -1,9 +1,0 @@
-﻿using ProgFrog.Core.TaskRunning.Runners;
-
-namespace ProgFrog.Core.TaskRunning
-{
-    public interface IRunnerVisitor
-    {
-        void Configure(BaseTaskRunner runner);
-    }
-}

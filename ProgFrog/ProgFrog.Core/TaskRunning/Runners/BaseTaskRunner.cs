@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ProgFrog.Core.Model;
-using System.IO;
-using ProgFrog.Core.TaskRunning.Compilers.Exceptions;
 using System.Diagnostics;
+using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.Runners;
+using ProgFrog.Interface.TaskRunning.Compilers.Exceptions;
+using ProgFrog.Interface.Model;
 
 namespace ProgFrog.Core.TaskRunning.Runners
 {
-    public abstract class BaseTaskRunner : IProgTaskRunner
+    public abstract class BaseTaskRunner : IProgTaskRunner, IProcessTaskRunner
     {
         private IInputWriter _inpWriter;
         private IOutputReader _outReader;

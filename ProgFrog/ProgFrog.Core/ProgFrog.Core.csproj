@@ -44,47 +44,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\FileProgramminTaskRepository.cs" />
-    <Compile Include="Model\GuidIdentifier.cs" />
-    <Compile Include="Model\IIdentifier.cs" />
-    <Compile Include="Data\Serialization\IModelSerializer.cs" />
-    <Compile Include="Data\IProgrammingTaskRepository.cs" />
     <Compile Include="Data\Serialization\JsonSerializer.cs" />
-    <Compile Include="Model\ParamsAndResults.cs" />
-    <Compile Include="Model\ProgrammingTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TaskRunning\Compilers\CompilationFailedException.cs" />
+    <Compile Include="TaskRunning\TaskRunnerProvider.cs" />
     <Compile Include="TaskRunning\Compilers\CSharpCompiler.cs" />
-    <Compile Include="TaskRunning\Compilers\ICompiler.cs" />
+    <Compile Include="TaskRunning\ResultsChecking\ResultsChecker.cs" />
     <Compile Include="TaskRunning\Runners\BaseTaskRunner.cs" />
-    <Compile Include="TaskRunning\Runners\ExecRunResults.cs" />
     <Compile Include="TaskRunning\Runners\FileWriter.cs" />
-    <Compile Include="TaskRunning\Runners\IFileWriter.cs" />
-    <Compile Include="TaskRunning\Runners\InputWriting\IInputWriter.cs" />
-    <Compile Include="TaskRunning\Runners\IProcess.cs" />
-    <Compile Include="TaskRunning\Runners\IProcessFactory.cs" />
-    <Compile Include="TaskRunning\Runners\ITempFileProvider.cs" />
-    <Compile Include="TaskRunning\Runners\OutputReading\IOutputReader.cs" />
-    <Compile Include="TaskRunning\Runners\IProgTaskRunner.cs" />
-    <Compile Include="TaskRunning\Runners\IRunnerVisitor.cs" />
     <Compile Include="TaskRunning\Runners\ProcessFactory.cs" />
     <Compile Include="TaskRunning\Runners\ProcessProxy.cs" />
-    <Compile Include="TaskRunning\Runners\ProgTaskRunResult.cs" />
-    <Compile Include="TaskRunning\Runners\ProgTaskRuntimeException.cs" />
     <Compile Include="TaskRunning\Runners\PythonTaskRunner.cs" />
-    <Compile Include="TaskRunning\ResultsChecking\CheckResult.cs" />
-    <Compile Include="TaskRunning\ResultsChecking\IResultsChecker.cs" />
-    <Compile Include="TaskRunning\ResultsChecking\ResultFailureType.cs" />
-    <Compile Include="TaskRunning\ResultsChecking\ResultsChecker.cs" />
-    <Compile Include="TaskRunning\Runners\RunnedTaskErrorType.cs" />
-    <Compile Include="TaskRunning\Runners\RunnedTestResult.cs" />
     <Compile Include="TaskRunning\Runners\CSharpTaskRunner.cs" />
     <Compile Include="TaskRunning\Runners\InputWriting\StandardInputStreamWriter.cs" />
     <Compile Include="TaskRunning\Runners\OutputReading\StandardOutputStreamReader.cs" />
-    <Compile Include="TaskRunning\Runners\TaskRunErrorType.cs" />
     <Compile Include="TaskRunning\Runners\TempFileProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProgFrog.Interface\ProgFrog.Interface.csproj">
+      <Project>{C15CAB14-F6A3-4401-8573-76D54E72C650}</Project>
+      <Name>ProgFrog.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

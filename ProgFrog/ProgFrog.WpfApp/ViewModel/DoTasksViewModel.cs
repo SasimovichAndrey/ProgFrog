@@ -1,22 +1,12 @@
 ﻿using AurelienRibon.Ui.SyntaxHighlightBox;
-using ProgFrog.Core.Data;
-using ProgFrog.Core.Data.Serialization;
-using ProgFrog.Core.Model;
-using ProgFrog.Core.TaskRunning;
-using ProgFrog.Core.TaskRunning.Compilers;
-using ProgFrog.Core.TaskRunning.ResultsChecking;
-using ProgFrog.Core.TaskRunning.Runners;
-using ProgFrog.WpfApp.Infrastructure;
+using ProgFrog.Interface.Data;
+using ProgFrog.Interface.Model;
+using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.ResultsChecking;
+using ProgFrog.Interface.TaskRunning.Runners;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace ProgFrog.WpfApp.ViewModel
 {

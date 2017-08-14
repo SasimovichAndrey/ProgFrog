@@ -1,9 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
-using ProgFrog.Core.Model;
-using ProgFrog.Core.TaskRunning;
 using ProgFrog.Core.TaskRunning.Compilers;
 using ProgFrog.Core.TaskRunning.Runners;
+using ProgFrog.Interface.Model;
+using ProgFrog.Interface.TaskRunning;
 using ProgFrog.Tests.Tests;
 using System;
 using System.Collections.Generic;

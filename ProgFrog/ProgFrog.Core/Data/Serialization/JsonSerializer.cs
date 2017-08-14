@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProgFrog.Interface.Data.Serialization;
 
 namespace ProgFrog.Core.Data.Serialization
 {

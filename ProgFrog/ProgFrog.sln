@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgFrog.Core", "ProgFrog.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgFrog.WpfApp", "ProgFrog.WpfApp\ProgFrog.WpfApp.csproj", "{63C1FC9B-C748-4152-96A1-F9FFAAF28B5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgFrog.Interface", "ProgFrog.Interface\ProgFrog.Interface.csproj", "{C15CAB14-F6A3-4401-8573-76D54E72C650}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgFrog.IoC", "ProgFrog.IoC\ProgFrog.IoC.csproj", "{806F78AB-7318-4705-969D-41957D5059C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{63C1FC9B-C748-4152-96A1-F9FFAAF28B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63C1FC9B-C748-4152-96A1-F9FFAAF28B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63C1FC9B-C748-4152-96A1-F9FFAAF28B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C15CAB14-F6A3-4401-8573-76D54E72C650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C15CAB14-F6A3-4401-8573-76D54E72C650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C15CAB14-F6A3-4401-8573-76D54E72C650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C15CAB14-F6A3-4401-8573-76D54E72C650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{806F78AB-7318-4705-969D-41957D5059C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806F78AB-7318-4705-969D-41957D5059C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806F78AB-7318-4705-969D-41957D5059C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{806F78AB-7318-4705-969D-41957D5059C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

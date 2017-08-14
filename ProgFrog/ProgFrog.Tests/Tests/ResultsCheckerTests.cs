@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
-using ProgFrog.Core.Model;
-using ProgFrog.Core.TaskRunning;
 using ProgFrog.Core.TaskRunning.ResultsChecking;
+using ProgFrog.Interface.Model;
+using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.ResultsChecking;
 using System.Collections.Generic;
 
 namespace ProgFrog.Tests

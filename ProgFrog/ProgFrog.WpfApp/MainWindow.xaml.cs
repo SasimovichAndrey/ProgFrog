@@ -1,21 +1,11 @@
-﻿using ProgFrog.Core.Data;
-using ProgFrog.Core.Model;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using ProgFrog.Core.TaskRunning;
-using ProgFrog.Core.TaskRunning.Runners;
-using ProgFrog.Core.TaskRunning.Compilers;
-using ProgFrog.Core.TaskRunning.ResultsChecking;
-using System.ComponentModel;
-using ProgFrog.Core.Data.Serialization;
 using ProgFrog.WpfApp.ViewModel;
-using ProgFrog.WpfApp.Infrastructure;
 using AurelienRibon.Ui.SyntaxHighlightBox;
+using ProgFrog.Interface.Model;
+using Microsoft.Practices.Unity;
+using ProgFrog.Interface.TaskRunning;
 
 namespace ProgFrog.WpfApp
 {
@@ -37,25 +27,13 @@ namespace ProgFrog.WpfApp
 
         private void Initialize()
         {
+            var unity = ProgFrog.IoC.Unity.Configure();
+
             _highlightersMappings[ProgrammingLanguage.CSharp] = HighlighterManager.Instance.Highlighters["CSharp"];
             _highlightersMappings[ProgrammingLanguage.Python] = HighlighterManager.Instance.Highlighters["Python"];
 
-            IModelSerializer<ProgrammingTask> serializer = new JsonSerializer<ProgrammingTask>();
-            var dataDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "App_Data");
-            var repo = new FileProgramminTaskRepository(serializer, dataDirectory);
+            var vm = unity.Resolve(typeof(DoTasksViewModel)) as DoTasksViewModel;
 
-
-            var taskRunnerProvider = new TaskRunnerProvider();
-            string csharpCompilerPath = @"c:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe";
-            taskRunnerProvider.RegisterRunner(new CSharpTaskRunner(new CSharpCompiler(csharpCompilerPath), new StandardInputStreamWriter(), new StandardOutputStreamReader(), new FileWriter(),
-                new ProcessFactory(), new TempFileProvider()), ProgrammingLanguage.CSharp);
-
-            var pyInterpreterPath = @"c:\Python27\python.exe";
-            taskRunnerProvider.RegisterRunner(new PythonTaskRunner(pyInterpreterPath, new StandardInputStreamWriter(), new StandardOutputStreamReader(), new FileWriter(),
-                new ProcessFactory(), new TempFileProvider()), ProgrammingLanguage.Python);
-
-            var resultsChecker = new ResultsChecker();
-            var vm = new DoTasksViewModel(taskRunnerProvider, repo, resultsChecker);
             this.DataContext = vm;
             this.ViewModel = vm;
             this.Loaded += vm.Initialize;

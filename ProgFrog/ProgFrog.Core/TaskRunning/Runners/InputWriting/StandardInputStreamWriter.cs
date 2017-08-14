@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using ProgFrog.Core.TaskRunning.Runners;
+using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.Runners;
 
 namespace ProgFrog.Core.TaskRunning
 {
@@ -28,7 +29,7 @@ namespace ProgFrog.Core.TaskRunning
             Process.StandardInput.Write(inp);
         }
 
-        public void Configure(BaseTaskRunner runner)
+        public void Configure(IProcessTaskRunner runner)
         {
             Process = runner.Process;
         }
