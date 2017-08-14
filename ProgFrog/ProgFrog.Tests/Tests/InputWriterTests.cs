@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using ProgFrog.Core.TaskRunning;
+using ProgFrog.Core.TaskRunning.Runners;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,7 +28,7 @@ namespace ProgFrog.Tests
             var proc = Process.Start(startInfo);
             try
             {
-                var inputWriter = new StandardInputStreamWriter(proc);
+                var inputWriter = new StandardInputStreamWriter(new ProcessProxy(proc));
                 var input = "123";
                 inputWriter.Write(input);
                 inputWriter.Write(Environment.NewLine);

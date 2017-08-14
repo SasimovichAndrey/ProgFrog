@@ -27,20 +27,20 @@ namespace ProgFrog.Tests
                 Results = firstTestRes
             };
             var results = new List<RunnedTestResult>();
-            var rtr1 = new RunnedTestResult
+            var runnedTestsResult = new RunnedTestResult
             {
                 IsError = false,
                 Results = firstTestRes,
                 ParamsAndResults = prmsAndRes1
             };
-            results.Add(rtr1);
-
-            var checkRes = _checker.Check(results);
+            results.Add(runnedTestsResult);
             var expectedCheckRes = new CheckResult
             {
                 ErrorType = null,
                 IsSuccessfull = true
             };
+
+            var checkRes = _checker.Check(results);
 
             Assert.AreEqual(expectedCheckRes, checkRes);
         }
@@ -55,20 +55,21 @@ namespace ProgFrog.Tests
                 Results = firstTestRes
             };
             var results = new List<RunnedTestResult>();
-            var rtr1 = new RunnedTestResult
+            var firstRunnedTestResult = new RunnedTestResult
             {
                 IsError = false,
                 Results = "wrong answer",
                 ParamsAndResults = prmsAndRes1
             };
-            results.Add(rtr1);
+            results.Add(firstRunnedTestResult);
 
-            var checkRes = _checker.Check(results);
             var expectedCheckRes = new CheckResult
             {
                 ErrorType = ResultFailureType.WrongResults,
                 IsSuccessfull = false
             };
+
+            var checkRes = _checker.Check(results);
 
             Assert.AreEqual(expectedCheckRes, checkRes);
         }
@@ -89,28 +90,29 @@ namespace ProgFrog.Tests
                 Results = secondTestRes
             };
             var results = new List<RunnedTestResult>();
-            var rtr1 = new RunnedTestResult
+            var firstRunnedTestResults = new RunnedTestResult
             {
                 IsError = false,
                 Results = firstTestRes,
                 ParamsAndResults = prmsAndRes1
             };
-            var rtr2 = new RunnedTestResult
+            var secondRunnedTestResult = new RunnedTestResult
             {
                 IsError = false,
                 Results = secondTestRes,
                 ParamsAndResults = prmsAndRes2
             };
-            results.Add(rtr1);
-            results.Add(rtr2);
+            results.Add(firstRunnedTestResults);
+            results.Add(secondRunnedTestResult);
 
-            var checkRes = _checker.Check(results);
             var expectedCheckRes = new CheckResult
             {
                 ErrorType = null,
                 IsSuccessfull = true
             };
 
+            var checkRes = _checker.Check(results);
+            
             Assert.AreEqual(expectedCheckRes, checkRes);
         }
 
@@ -130,27 +132,28 @@ namespace ProgFrog.Tests
                 Results = secondTestRes
             };
             var results = new List<RunnedTestResult>();
-            var rtr1 = new RunnedTestResult
+            var firstRunnedTestResult = new RunnedTestResult
             {
                 IsError = false,
                 Results = firstTestRes,
                 ParamsAndResults = prmsAndRes1
             };
-            var rtr2 = new RunnedTestResult
+            var secondRunnedTestResult = new RunnedTestResult
             {
                 IsError = false,
                 Results = "wrong results",
                 ParamsAndResults = prmsAndRes2
             };
-            results.Add(rtr1);
-            results.Add(rtr2);
+            results.Add(firstRunnedTestResult);
+            results.Add(secondRunnedTestResult);
 
-            var checkRes = _checker.Check(results);
             var expectedCheckRes = new CheckResult
             {
                 ErrorType = ResultFailureType.WrongResults,
                 IsSuccessfull = false
             };
+
+            var checkRes = _checker.Check(results);
 
             Assert.AreEqual(expectedCheckRes, checkRes);
         }

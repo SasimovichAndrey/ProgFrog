@@ -27,7 +27,7 @@ namespace ProgFrog.WpfApp.ViewModel
         private ITaskRunnerProvider _taskRunnerProvider;
         private string _taskStatus;
         private ProgrammingTask _selectedTask;
-        private ProgrammingLanguageEnum _programmingLaguage;
+        private ProgrammingLanguage _programmingLaguage;
 
         // Binding props
         public ObservableCollection<ProgrammingTask> ProgrammingTasks { get; set; } = new ObservableCollection<ProgrammingTask>();
@@ -44,7 +44,7 @@ namespace ProgFrog.WpfApp.ViewModel
             }
         }
 
-        public ObservableCollection<ProgrammingLanguageEnum> ProgrammingLanguages { get; set; } = new ObservableCollection<ProgrammingLanguageEnum>();
+        public ObservableCollection<ProgrammingLanguage> ProgrammingLanguages { get; set; } = new ObservableCollection<ProgrammingLanguage>();
 
         public IHighlighter CodeHighlighter
         {
@@ -54,7 +54,7 @@ namespace ProgFrog.WpfApp.ViewModel
             }
         }
 
-        public ProgrammingLanguageEnum ProgrammingLanguage
+        public ProgrammingLanguage ProgrammingLanguage
         {
             get
             {
@@ -83,11 +83,6 @@ namespace ProgFrog.WpfApp.ViewModel
             _taskRepo = taskRepo;
             _taskRunnerProvider = taskRunnerProvider;
             _resultsChecker = resultsChecker;
-
-            foreach(var item in _taskRunnerProvider.GetAvailableLanguages())
-            {
-                ProgrammingLanguages.Add(item);
-            }
         }
 
         // actions
@@ -121,6 +116,11 @@ namespace ProgFrog.WpfApp.ViewModel
 
         public async void Initialize(object sender, EventArgs e)
         {
+            foreach (var item in _taskRunnerProvider.GetAvailableLanguages())
+            {
+                ProgrammingLanguages.Add(item);
+            }
+
             var tasks = await _taskRepo.GetAll();
             foreach (var task in tasks)
             {

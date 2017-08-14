@@ -15,7 +15,8 @@ namespace ProgFrog.Core.TaskRunning.Runners
         private IOutputReader _outReader;
         private string _execFileName;
 
-        public CSharpTaskRunner(ICompiler compiler, IInputWriter inpWriter, IOutputReader outReader) : base(inpWriter, outReader)
+        public CSharpTaskRunner(ICompiler compiler, IInputWriter inpWriter, IOutputReader outReader, IFileWriter fileWriter, IProcessFactory processFactory, ITempFileProvider tempFileProvider) 
+            : base(inpWriter, outReader, fileWriter, processFactory, tempFileProvider)
         {
             _compiler = compiler;
         }

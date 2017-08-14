@@ -23,23 +23,20 @@ namespace ProgFrog.Tests.Tests
         [SetUp]
         public void Setup()
         {
-            var progTaskRunResultMock = new Mock<ProgTaskRunResult>();
-            progTaskRunResultMock.Setup(m => m.IsRunError).Returns(true);
-            progTaskRunResultMock.Setup(m => m.ErrorType).Returns(TaskRunErrorType.CompilationFailed);
+            var progTaskRunResult = new ProgTaskRunResult();
+            progTaskRunResult.SetRunError(TaskRunErrorType.CompilationFailed);
+
             var runnerMockObj = new Mock<IProgTaskRunner>();
             runnerMockObj.Setup(m => m.Run(It.IsAny<ProgrammingTask>(), It.IsAny<string>())).Returns(() =>
-                Task.FromResult<ProgTaskRunResult>(progTaskRunResultMock.Object));
+                Task.FromResult<ProgTaskRunResult>(progTaskRunResult));
 
             var runnerProviderMock = new Mock<ITaskRunnerProvider>();
-            runnerProviderMock.Setup(m => m.GetRunner(It.IsAny<ProgrammingLanguageEnum>())).Returns(() => { return runnerMockObj.Object; });
-            //runnerProviderMock.Setup(m => m.GetAvailableLanguages()).Returns(() => { return new List< });
+            runnerProviderMock.Setup(m => m.GetRunner(It.IsAny<ProgrammingLanguage>())).Returns(() => { return runnerMockObj.Object; });
 
-            ITaskRunnerProvider taskRunnerProvider = runnerProviderMock.Object;
             var taskRepoMock = new Mock<IProgrammingTaskRepository>();
-
             var checkerMock = new Mock<IResultsChecker>();
 
-            _viewModel = new DoTasksViewModel(taskRunnerProvider, taskRepoMock.Object, checkerMock.Object);
+            _viewModel = new DoTasksViewModel(runnerProviderMock.Object, taskRepoMock.Object, checkerMock.Object);
         }
 
         [Test]

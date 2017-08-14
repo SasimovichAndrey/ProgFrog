@@ -11,9 +11,9 @@ namespace ProgFrog.Core.TaskRunning.Runners
         private TaskRunErrorType? _errorType;
 
         public IList<RunnedTestResult> Results { get; set; } = new List<RunnedTestResult>();
-        public virtual TaskRunErrorType? ErrorType { get; private set; }
+        public TaskRunErrorType? ErrorType { get; private set; }
 
-        public virtual bool IsRunError { get; private set; }
+        public bool IsRunError { get; private set; }
 
         public void SetRunError(TaskRunErrorType errType)
         {

@@ -26,7 +26,7 @@ namespace ProgFrog.WpfApp
     {
         private DoTasksViewModel ViewModel;
 
-        private Dictionary<ProgrammingLanguageEnum, IHighlighter> _highlightersMappings = new Dictionary<ProgrammingLanguageEnum, IHighlighter>();
+        private Dictionary<ProgrammingLanguage, IHighlighter> _highlightersMappings = new Dictionary<ProgrammingLanguage, IHighlighter>();
 
         public MainWindow()
         {
@@ -37,8 +37,8 @@ namespace ProgFrog.WpfApp
 
         private void Initialize()
         {
-            _highlightersMappings[ProgrammingLanguageEnum.CSharp] = HighlighterManager.Instance.Highlighters["CSharp"];
-            _highlightersMappings[ProgrammingLanguageEnum.Python] = HighlighterManager.Instance.Highlighters["Python"];
+            _highlightersMappings[ProgrammingLanguage.CSharp] = HighlighterManager.Instance.Highlighters["CSharp"];
+            _highlightersMappings[ProgrammingLanguage.Python] = HighlighterManager.Instance.Highlighters["Python"];
 
             IModelSerializer<ProgrammingTask> serializer = new JsonSerializer<ProgrammingTask>();
             var dataDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "App_Data");
@@ -47,10 +47,12 @@ namespace ProgFrog.WpfApp
 
             var taskRunnerProvider = new TaskRunnerProvider();
             string csharpCompilerPath = @"c:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe";
-            taskRunnerProvider.RegisterRunner(new CSharpTaskRunner(new CSharpCompiler(csharpCompilerPath), new StandardInputStreamWriter(), new StandardOutputStreamReader()), ProgrammingLanguageEnum.CSharp);
+            taskRunnerProvider.RegisterRunner(new CSharpTaskRunner(new CSharpCompiler(csharpCompilerPath), new StandardInputStreamWriter(), new StandardOutputStreamReader(), new FileWriter(),
+                new ProcessFactory(), new TempFileProvider()), ProgrammingLanguage.CSharp);
 
             var pyInterpreterPath = @"c:\Python27\python.exe";
-            taskRunnerProvider.RegisterRunner(new PythonTaskRunner(pyInterpreterPath, new StandardInputStreamWriter(), new StandardOutputStreamReader()), ProgrammingLanguageEnum.Python);
+            taskRunnerProvider.RegisterRunner(new PythonTaskRunner(pyInterpreterPath, new StandardInputStreamWriter(), new StandardOutputStreamReader(), new FileWriter(),
+                new ProcessFactory(), new TempFileProvider()), ProgrammingLanguage.Python);
 
             var resultsChecker = new ResultsChecker();
             var vm = new DoTasksViewModel(taskRunnerProvider, repo, resultsChecker);
@@ -61,7 +63,7 @@ namespace ProgFrog.WpfApp
 
         public void ProgLangList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var curLang = (ProgrammingLanguageEnum)((ListBox)sender).SelectedItem;
+            var curLang = (ProgrammingLanguage)((ListBox)sender).SelectedItem;
 
             if (_highlightersMappings.ContainsKey(curLang))
             {

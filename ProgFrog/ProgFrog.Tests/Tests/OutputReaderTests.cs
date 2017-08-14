@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using ProgFrog.Core.TaskRunning;
+using ProgFrog.Core.TaskRunning.Runners;
 using System.Diagnostics;
 using System.IO;
 
@@ -22,7 +23,7 @@ namespace ProgFrog.Tests
 
                 proc.Start();
 
-                var reader = new StandardOutputStreamReader(proc);
+                var reader = new StandardOutputStreamReader(new ProcessProxy(proc));
                 var result = reader.Read();
 
                 proc.Close();

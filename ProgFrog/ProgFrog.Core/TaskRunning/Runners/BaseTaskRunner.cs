@@ -11,40 +11,43 @@ namespace ProgFrog.Core.TaskRunning.Runners
     {
         private IInputWriter _inpWriter;
         private IOutputReader _outReader;
+        private IFileWriter _fileWriter;
+        private IProcessFactory _processFactory;
+        private ITempFileProvider _tempFileProvider;
 
         protected abstract void PrepareForRunning(string codeFileName);
         protected abstract void CleanupAfterRunning();
         protected abstract ProcessStartInfo GetProcessStartInfo();
 
-        public Process Process { get; protected set; }
+        public IProcess Process { get; protected set; }
 
-        public BaseTaskRunner(IInputWriter inpWriter, IOutputReader outReader)
+        public BaseTaskRunner(IInputWriter inpWriter, IOutputReader outReader, IFileWriter fileWriter, IProcessFactory processFactory, ITempFileProvider tempFileProvider)
         {
             _inpWriter = inpWriter;
             _outReader = outReader;
+            _fileWriter = fileWriter;
+            _tempFileProvider = tempFileProvider;
+            _processFactory = processFactory;
         }
 
         public async Task<ProgTaskRunResult> Run(ProgrammingTask task, string userCode)
         {
             // Создание временного файла с кодом
-            string tempSourceFileName = Path.GetTempFileName();
+            string tempSourceFileName = _tempFileProvider.CreateNewTempFile();
 
             var result = new ProgTaskRunResult()
             {
             };
             try
             {
-                using (var writer = new StreamWriter(File.OpenWrite(tempSourceFileName)))
-                {
-                    writer.Write(userCode);
-                }
+                _fileWriter.Write(userCode, tempSourceFileName);
 
                 foreach (var inpParam in task.ParamsAndResults)
                 {
                     PrepareForRunning(tempSourceFileName);
                     var startInfo = GetProcessStartInfo();
 
-                    Process = Process.Start(startInfo);
+                    Process = _processFactory.Start(startInfo);
 
                     _inpWriter.Configure(this);
                     _outReader.Configure(this);
@@ -71,6 +74,7 @@ namespace ProgFrog.Core.TaskRunning.Runners
                     {
                         result.Results.Add(new RunnedTestResult { Results = results, ParamsAndResults = inpParam });
                     }
+
                     CleanupAfterRunning();
                 }
             }
@@ -80,7 +84,7 @@ namespace ProgFrog.Core.TaskRunning.Runners
             }
             finally
             {
-                File.Delete(tempSourceFileName);
+                _tempFileProvider.DeleteCurrentTempFile();
             }
 
             return result;

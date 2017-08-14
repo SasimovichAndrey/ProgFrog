@@ -6,9 +6,9 @@ namespace ProgFrog.Core.TaskRunning
 {
     public class StandardOutputStreamReader : IOutputReader
     {
-        public Process Process { get; private set; }
+        public IProcess Process { get; private set; }
 
-        public StandardOutputStreamReader(Process process)
+        public StandardOutputStreamReader(IProcess process)
         {
             Process = process;
         }
@@ -20,7 +20,7 @@ namespace ProgFrog.Core.TaskRunning
 
         public string Read()
         {
-            if (Process.StartInfo.RedirectStandardOutput == false || Process.StartInfo.UseShellExecute != false)
+            if (Process.RedirectStandardOutput == false || Process.UseShellExecute != false)
             {
                 throw new ApplicationException("Cannot read from this process std output");
             }

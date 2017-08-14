@@ -6,9 +6,9 @@ namespace ProgFrog.Core.TaskRunning
 {
     public class StandardInputStreamWriter : IInputWriter
     {
-        public Process Process { get; private set; }
+        public IProcess Process { get; private set; }
 
-        public StandardInputStreamWriter(Process process)
+        public StandardInputStreamWriter(IProcess process)
         {
             Process = process;
         }
@@ -20,7 +20,7 @@ namespace ProgFrog.Core.TaskRunning
 
         public void Write(string inp)
         {
-            if (Process.StartInfo.RedirectStandardInput == false || Process.StartInfo.UseShellExecute != false)
+            if (Process.RedirectStandardInput == false || Process.UseShellExecute != false)
             {
                 throw new ApplicationException("Cannot read from this process std output");
             }

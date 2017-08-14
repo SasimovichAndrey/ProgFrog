@@ -58,8 +58,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Infrastructure\ITaskRunnerProvider.cs" />
-    <Compile Include="Infrastructure\ProgrammingLanguageEnum.cs" />
+    <Compile Include="Infrastructure\ProgrammingLanguage.cs" />
     <Compile Include="Infrastructure\TaskRunnerProvider.cs" />
+    <Compile Include="ViewModel\AddProgTaskViewModel.cs" />
     <Compile Include="ViewModel\DoTasksViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">

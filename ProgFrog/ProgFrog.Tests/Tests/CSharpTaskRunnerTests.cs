@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using ProgFrog.Core.Model;
 using ProgFrog.Core.TaskRunning;
 using ProgFrog.Core.TaskRunning.Compilers;
 using ProgFrog.Core.TaskRunning.Runners;
+using ProgFrog.Tests.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +13,14 @@ using System.Threading.Tasks;
 namespace ProgFrog.Tests
 {
     [TestFixture]
-    public class CSharpTaskRunnerTests : CompilerTestBase
+    public class CSharpTaskRunnerTests : RunnersTestBase
     {
         IProgTaskRunner _runner;
 
         [SetUp]
         public void Setup()
         {
-            _runner = new CSharpTaskRunner(new CSharpCompiler(_cSharpCompPath), new StandardInputStreamWriter(), new StandardOutputStreamReader());
+            _runner = new CSharpTaskRunner(new CSharpCompiler(_cSharpCompPath), _inputWriterMock.Object, _outReaderMock.Object, _fileWriterMock.Object, _processFactoryMock.Object, _tempFileProviderMock.Object);
         }
 
         [Test]

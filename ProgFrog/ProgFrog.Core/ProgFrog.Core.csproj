@@ -57,10 +57,17 @@
     <Compile Include="TaskRunning\Compilers\ICompiler.cs" />
     <Compile Include="TaskRunning\Runners\BaseTaskRunner.cs" />
     <Compile Include="TaskRunning\Runners\ExecRunResults.cs" />
+    <Compile Include="TaskRunning\Runners\FileWriter.cs" />
+    <Compile Include="TaskRunning\Runners\IFileWriter.cs" />
     <Compile Include="TaskRunning\Runners\InputWriting\IInputWriter.cs" />
+    <Compile Include="TaskRunning\Runners\IProcess.cs" />
+    <Compile Include="TaskRunning\Runners\IProcessFactory.cs" />
+    <Compile Include="TaskRunning\Runners\ITempFileProvider.cs" />
     <Compile Include="TaskRunning\Runners\OutputReading\IOutputReader.cs" />
     <Compile Include="TaskRunning\Runners\IProgTaskRunner.cs" />
     <Compile Include="TaskRunning\Runners\IRunnerVisitor.cs" />
+    <Compile Include="TaskRunning\Runners\ProcessFactory.cs" />
+    <Compile Include="TaskRunning\Runners\ProcessProxy.cs" />
     <Compile Include="TaskRunning\Runners\ProgTaskRunResult.cs" />
     <Compile Include="TaskRunning\Runners\ProgTaskRuntimeException.cs" />
     <Compile Include="TaskRunning\Runners\PythonTaskRunner.cs" />
@@ -74,6 +81,7 @@
     <Compile Include="TaskRunning\Runners\InputWriting\StandardInputStreamWriter.cs" />
     <Compile Include="TaskRunning\Runners\OutputReading\StandardOutputStreamReader.cs" />
     <Compile Include="TaskRunning\Runners\TaskRunErrorType.cs" />
+    <Compile Include="TaskRunning\Runners\TempFileProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

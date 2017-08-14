@@ -14,7 +14,8 @@ namespace ProgFrog.Core.TaskRunning
 
         public Process Process { get; private set; }
 
-        public PythonTaskRunner(string interpreterPath, IInputWriter inpWriter, IOutputReader outReader) : base(inpWriter, outReader)
+        public PythonTaskRunner(string interpreterPath, IInputWriter inpWriter, IOutputReader outReader, IFileWriter fileWriter, IProcessFactory processFactory, ITempFileProvider tempFileProvider)
+            : base(inpWriter, outReader, fileWriter, processFactory, tempFileProvider)
         {
             _pyInterpreterPath = interpreterPath;
         }

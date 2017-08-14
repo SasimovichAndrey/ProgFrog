@@ -5,7 +5,7 @@ namespace ProgFrog.WpfApp.Infrastructure
 {
     public interface ITaskRunnerProvider
     {
-        IProgTaskRunner GetRunner(ProgrammingLanguageEnum lang);
-        IEnumerable<ProgrammingLanguageEnum> GetAvailableLanguages();
+        IProgTaskRunner GetRunner(ProgrammingLanguage lang);
+        IEnumerable<ProgrammingLanguage> GetAvailableLanguages();
     }
 }

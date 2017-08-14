@@ -6,14 +6,14 @@ namespace ProgFrog.WpfApp.Infrastructure
 {
     public class TaskRunnerProvider : ITaskRunnerProvider
     {
-        private IDictionary<ProgrammingLanguageEnum, IProgTaskRunner> _langToRunnerMappings = new Dictionary<ProgrammingLanguageEnum, IProgTaskRunner>();
+        private IDictionary<ProgrammingLanguage, IProgTaskRunner> _langToRunnerMappings = new Dictionary<ProgrammingLanguage, IProgTaskRunner>();
 
-        public void RegisterRunner(IProgTaskRunner runner, ProgrammingLanguageEnum lang)
+        public void RegisterRunner(IProgTaskRunner runner, ProgrammingLanguage lang)
         {
             _langToRunnerMappings[lang] = runner;
         }
 
-        public IProgTaskRunner GetRunner(ProgrammingLanguageEnum lang)
+        public IProgTaskRunner GetRunner(ProgrammingLanguage lang)
         {
             if (_langToRunnerMappings.ContainsKey(lang))
             {
@@ -25,7 +25,7 @@ namespace ProgFrog.WpfApp.Infrastructure
             }
         }
 
-        public IEnumerable<ProgrammingLanguageEnum> GetAvailableLanguages()
+        public IEnumerable<ProgrammingLanguage> GetAvailableLanguages()
         {
             return _langToRunnerMappings.Keys;
         }
