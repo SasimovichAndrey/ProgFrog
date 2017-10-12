@@ -24,7 +24,7 @@ namespace ProgFrog.IoC
             var container = new UnityContainer();
 
             container.RegisterType<IModelSerializer<ProgrammingTask>, JsonSerializer<ProgrammingTask>>();
-            container.RegisterType<IProgrammingTaskRepository, FileProgramminTaskRepository>(new InjectionConstructor(new ResolvedParameter<IModelSerializer<ProgrammingTask>>(), new InjectionParameter<string>(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "App_Data"))));
+            container.RegisterType<IProgrammingTaskRepository, FileProgramminTaskRepository>(new InjectionConstructor(new ResolvedParameter<IModelSerializer<ProgrammingTask>>(), new InjectionParameter<string>(@"f:\Projects\dotNet\ProgFrog\ProgFrog\progtasks")));
             container.RegisterType<IResultsChecker, ResultsChecker>();
 
             container.RegisterType<IInputWriter, StandardInputStreamWriter>(new InjectionConstructor());
