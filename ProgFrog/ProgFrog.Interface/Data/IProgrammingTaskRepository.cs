@@ -8,5 +8,6 @@ namespace ProgFrog.Interface.Data
     {
         Task<IEnumerable<ProgrammingTask>> GetAll();
         Task<ProgrammingTask> Create(ProgrammingTask task);
+        Task<ProgrammingTask> GetById(IIdentifier identifier);
     }
 }

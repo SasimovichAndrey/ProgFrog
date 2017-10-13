@@ -130,10 +130,12 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ProgrammingTasksController.cs" />
+    <Compile Include="Controllers\TaskRunnerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\RunTaskRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

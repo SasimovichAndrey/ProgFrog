@@ -1,6 +1,6 @@
 import { Injectable} from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import {ProgrammingTask } from './programming-task';
+import { ProgrammingTask } from './programming-task';
 import { ConfigService } from './config.service';
 
 import 'rxjs/add/operator/toPromise';

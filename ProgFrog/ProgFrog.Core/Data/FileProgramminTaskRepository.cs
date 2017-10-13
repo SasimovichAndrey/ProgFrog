@@ -41,21 +41,44 @@ namespace ProgFrog.Core.Data
             var tasks = new List<ProgrammingTask>();
             foreach(var fileName in fileNames)
             {
-                using (var streamReader = new StreamReader(File.Open(fileName, FileMode.Open, FileAccess.Read)))
-                {
-                    var fileContentsTask = streamReader.ReadToEndAsync();
-                    var pureFileName = Path.GetFileNameWithoutExtension(fileName);
-                    var id = new GuidIdentifier(new Guid(pureFileName));
+                var progTask = await GetTaskFromFile(fileName);
 
-                    var fileContents = await fileContentsTask;
-                    var progTask = _serializer.Deserialize(fileContents);
-                    progTask.Identifier = id;
-
-                    tasks.Add(progTask);
-                }
+                tasks.Add(progTask);
             }
 
             return tasks;
         }
+
+        private async Task<ProgrammingTask> GetTaskFromFile(string fileName)
+        {
+            ProgrammingTask progTask = null;
+            using (var streamReader = new StreamReader(File.Open(fileName, FileMode.Open, FileAccess.Read)))
+            {
+                var fileContentsTask = streamReader.ReadToEndAsync();
+                var pureFileName = Path.GetFileNameWithoutExtension(fileName);
+                var id = new GuidIdentifier(new Guid(pureFileName));
+
+                var fileContents = await fileContentsTask;
+                progTask = _serializer.Deserialize(fileContents);
+                progTask.Identifier = id;
+            }
+
+            return progTask;
+        }
+
+        public async Task<ProgrammingTask> GetById(IIdentifier identifier)
+        {
+            ProgrammingTask task = null;
+
+            var fileName = Path.Combine(_directoryPath, identifier.ToString() + ".pt");
+            if (File.Exists(fileName))
+            {
+                task = await GetTaskFromFile(fileName);
+            }
+
+            return task;
+        }
+
+
     }
 }

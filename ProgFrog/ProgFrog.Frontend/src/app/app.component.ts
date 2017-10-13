@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ProgrammingTasksService } from './programming-tasks.service'
 import { ProgrammingTask } from './programming-task'
-import { ConfigService } from './config.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ProgrammingTasksService, ConfigService]
+  providers: []
 })
 export class AppComponent implements OnInit{
   public progTasks : ProgrammingTask[];
@@ -23,6 +22,10 @@ export class AppComponent implements OnInit{
   	this.progTasks = [];
   	this.programmingTaskService.getAllTasks().then(tasks =>
   		 	this.progTasks = tasks
-  		 );
+		   );
+  }
+
+  public checkTask() : void {
+
   }
 }
