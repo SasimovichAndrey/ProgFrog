@@ -20,10 +20,6 @@ namespace ProgFrog.Tests.Tests
         [SetUp]
         public void Setup()
         {
-            _fileWriterMock = new Mock<IFileWriter>();
-            _processFactoryMock = new Mock<IProcessFactory>();
-            _inputWriterMock = new Mock<IInputWriter>();
-            _outReaderMock = new Mock<IOutputReader>();
             _runner = new PythonTaskRunner(@"c:\Python27\python.exe", _inputWriterMock.Object, _outReaderMock.Object, _fileWriterMock.Object, _processFactoryMock.Object, _tempFileProviderMock.Object);
         }
 
@@ -41,10 +37,6 @@ namespace ProgFrog.Tests.Tests
             };
             task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "3" }, Results = testResult });
             string code = "code";
-            var expectedRes = new RunnedTestResult
-            {
-                Results = testResult
-            };
 
             // act
             var res = await _runner.Run(task, code);
@@ -57,7 +49,7 @@ namespace ProgFrog.Tests.Tests
             _outReaderMock.Verify(or => or.Configure(_runner), Times.Exactly(task.ParamsAndResults.Count()));
             _outReaderMock.Verify(or => or.Read(), Times.Exactly(task.ParamsAndResults.Count()));
 
-            Assert.AreEqual(expectedRes.Results, res.Results.First().Results);
+            Assert.AreEqual(testResult, res.Results.First().Results);
         }
     }
 }

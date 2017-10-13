@@ -1,12 +1,14 @@
 ﻿using Moq;
 using NUnit.Framework;
-using ProgFrog.Core.TaskRunning.Compilers;
 using ProgFrog.Core.TaskRunning.Runners;
 using ProgFrog.Interface.Model;
 using ProgFrog.Interface.TaskRunning;
+using ProgFrog.Interface.TaskRunning.Compilers;
+using ProgFrog.Interface.TaskRunning.Runners;
 using ProgFrog.Tests.Tests;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,47 +17,49 @@ namespace ProgFrog.Tests
     [TestFixture]
     public class CSharpTaskRunnerTests : RunnersTestBase
     {
-        IProgTaskRunner _runner;
+        CSharpTaskRunner _runner;
+        Mock<ICompiler> _compilerMock;
 
         [SetUp]
         public void Setup()
         {
-            _runner = new CSharpTaskRunner(new CSharpCompiler(_cSharpCompPath), _inputWriterMock.Object, _outReaderMock.Object, _fileWriterMock.Object, _processFactoryMock.Object, _tempFileProviderMock.Object);
+            base.Setup();
+
+            _compilerMock = new Mock<ICompiler>();
+            _runner = new CSharpTaskRunner(_compilerMock.Object, _inputWriterMock.Object, _outReaderMock.Object, _fileWriterMock.Object, _processFactoryMock.Object,
+                _tempFileProviderMock.Object);
         }
 
         [Test]
         public async Task TestSingleParam()
         {
+            // arrange
+            var testResult = $"5{Environment.NewLine}";
+            var tempFileName = "tempFile";
+            _outReaderMock.Setup(or => or.Read()).Returns(testResult);
+            _processFactoryMock.Setup(f => f.Start(It.IsAny<ProcessStartInfo>())).Returns(new Mock<IProcess>().Object);
+            _tempFileProviderMock.Setup(p => p.CreateNewTempFile()).Returns(tempFileName);
             var task = new ProgrammingTask
             {
                 Description = "x+2",
                 ParamsAndResults = new List<ParamsAndResults>()
             };
-            task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "3" }, Results = "5" });
+            task.ParamsAndResults.Add(new ParamsAndResults { Params = new List<string>() { "3" }, Results = testResult });
+            string code = "code";
 
-
-            string code = @"using System;
-
-                namespace ConsoleDraft
-                {
-                    class Program
-                    {
-                        static void Main(string[] args)
-                        {
-                            var x = int.Parse(Console.ReadLine());
-                            Console.WriteLine(x + 2);
-                        }
-                    }
-                }";
-
+            // act
             var res = await _runner.Run(task, code);
 
-            var expectedRes = new RunnedTestResult
-            {
-                Results = $"5{Environment.NewLine}"
-            };
+            // assert
+            _fileWriterMock.Verify(fw => fw.Write(code, tempFileName));
+            _compilerMock.Verify(c => c.Compile(tempFileName));
+            _tempFileProviderMock.Verify(tfp => tfp.CreateNewTempFile(), Times.Exactly(task.ParamsAndResults.Count()));
+            _tempFileProviderMock.Verify(tfp => tfp.DeleteCurrentTempFile(), Times.Exactly(task.ParamsAndResults.Count()));
+            _inputWriterMock.Verify(iw => iw.Configure(_runner), Times.Exactly(task.ParamsAndResults.Count()));
+            _outReaderMock.Verify(or => or.Configure(_runner), Times.Exactly(task.ParamsAndResults.Count()));
+            _outReaderMock.Verify(or => or.Read(), Times.Exactly(task.ParamsAndResults.Count()));
 
-            Assert.AreEqual(expectedRes.Results, res.Results.First().Results);
+            Assert.AreEqual(testResult, res.Results.First().Results);
         }
 
         [Test]

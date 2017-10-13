@@ -1,4 +1,5 @@
 ﻿using Moq;
+using NUnit.Framework;
 using ProgFrog.Interface.TaskRunning;
 using ProgFrog.Interface.TaskRunning.Runners;
 
@@ -13,6 +14,12 @@ namespace ProgFrog.Tests.Tests
         protected Mock<ITempFileProvider> _tempFileProviderMock;
 
         public RunnersTestBase()
+        {
+            
+        }
+
+        [SetUp]
+        public void Setup()
         {
             _fileWriterMock = new Mock<IFileWriter>();
             _processFactoryMock = new Mock<IProcessFactory>();

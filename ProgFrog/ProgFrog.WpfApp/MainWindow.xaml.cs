@@ -4,8 +4,6 @@ using System.Windows.Controls;
 using ProgFrog.WpfApp.ViewModel;
 using AurelienRibon.Ui.SyntaxHighlightBox;
 using ProgFrog.Interface.Model;
-using Microsoft.Practices.Unity;
-using ProgFrog.Interface.TaskRunning;
 
 namespace ProgFrog.WpfApp
 {
@@ -27,12 +25,12 @@ namespace ProgFrog.WpfApp
 
         private void Initialize()
         {
-            var unity = ProgFrog.IoC.Unity.Configure();
+            ProgFrog.IoC.DependencyReolver.Configure();
 
             _highlightersMappings[ProgrammingLanguage.CSharp] = HighlighterManager.Instance.Highlighters["CSharp"];
             _highlightersMappings[ProgrammingLanguage.Python] = HighlighterManager.Instance.Highlighters["Python"];
 
-            var vm = unity.Resolve(typeof(DoTasksViewModel)) as DoTasksViewModel;
+            var vm = ProgFrog.IoC.DependencyReolver.Resolve<DoTasksViewModel>();
 
             this.DataContext = vm;
             this.ViewModel = vm;
