@@ -5,9 +5,8 @@
     	<option *ngFor="let lang of progLanguages" [ngValue]="lang">{{lang.Name}}</option>
 	</select>
 	<div id="code-box-container">
-		<form novalidate>
-			<textarea required></textarea>
+			<textarea required [ngModel]="userCode"></textarea>
 			<input type="button" (click)="checkTask()" value="Check"/>
-		</form>
 	</div>
+	{{taskRunResult.isError}}
 

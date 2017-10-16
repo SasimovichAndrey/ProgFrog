@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProgrammingTasksService } from './programming-tasks.service';
 import { ProgrammingLanguageService } from './programming-language.service';
+import { TaskRunnerService } from './task-runner.service';
 import { ProgrammingTask } from './programming-task';
 import { ProgrammingLanguage } from './programming-language';
+import { TaskRunResult } from './task-run-result'
 
 @Component({
   selector: 'app-root',
@@ -15,8 +17,10 @@ export class AppComponent implements OnInit{
   public selectedTask : ProgrammingTask;
   public progLanguages : ProgrammingLanguage[];
   public selectedLanguage : ProgrammingLanguage;
+  public taskRunResult : TaskRunResult = {};
+  public userCode : string;
   
-  public constructor(private programmingTaskService : ProgrammingTasksService, private programmingLanguageService : ProgrammingLanguageService){
+  public constructor(private programmingTaskService : ProgrammingTasksService, private programmingLanguageService : ProgrammingLanguageService, private taskRunnerService : TaskRunnerService){
   }
 
 	ngOnInit() : void{
@@ -46,7 +50,8 @@ export class AppComponent implements OnInit{
   }
 
   public checkTask() : void {
-    
+    this.taskRunnerService.run(this.selectedTask, this.userCode, this.selectedLanguage)
+      .then(result => this.taskRunResult = result);
   }
 
   public selectTask(task : ProgrammingTask ) : void{
