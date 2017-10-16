@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProgFrog.WebApi.Filters;
+using ProgFrog.WebApi.JsonConverters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -23,7 +25,11 @@ namespace ProgFrog.WebApi
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            
+            config.Filters.Add(new ModelValidationActionFilter());
+
+            var formatters = GlobalConfiguration.Configuration.Formatters;
+            var jsonFormatter = formatters.JsonFormatter;
+            jsonFormatter.SerializerSettings.Converters.Add(new IdentifierJsonConverter());
         }
     }
 }

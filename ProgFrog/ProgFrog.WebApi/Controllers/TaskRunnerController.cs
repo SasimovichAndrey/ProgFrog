@@ -1,6 +1,7 @@
 ﻿using ProgFrog.Interface.Data;
 using ProgFrog.Interface.TaskRunning;
 using ProgFrog.Interface.TaskRunning.Runners;
+using ProgFrog.WebApi.Filters;
 using ProgFrog.WebApi.ViewModel;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -31,7 +32,7 @@ namespace ProgFrog.WebApi.Controllers
             }
             else
             {
-                return InternalServerError();
+                return BadRequest($"Programming task with id={req.Task.Identifier} doesn't exist");
             }
         }
     }

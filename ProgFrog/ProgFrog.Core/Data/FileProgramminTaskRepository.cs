@@ -70,7 +70,7 @@ namespace ProgFrog.Core.Data
         {
             ProgrammingTask task = null;
 
-            var fileName = Path.Combine(_directoryPath, identifier.ToString() + ".pt");
+            var fileName = Path.Combine(_directoryPath, identifier.StringPresentation + ".pt");
             if (File.Exists(fileName))
             {
                 task = await GetTaskFromFile(fileName);

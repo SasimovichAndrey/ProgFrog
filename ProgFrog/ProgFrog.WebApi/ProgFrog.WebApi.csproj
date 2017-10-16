@@ -134,6 +134,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JsonConverters\IdentifierJsonConverter.cs" />
+    <Compile Include="Filters\ModelValidationActionFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\RunTaskRequest.cs" />
   </ItemGroup>

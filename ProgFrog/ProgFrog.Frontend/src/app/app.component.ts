@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgrammingTasksService } from './programming-tasks.service'
-import { ProgrammingTask } from './programming-task'
+import { ProgrammingTasksService } from './programming-tasks.service';
+import { ProgrammingLanguageService } from './programming-language.service';
+import { ProgrammingTask } from './programming-task';
+import { ProgrammingLanguage } from './programming-language';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,11 @@ import { ProgrammingTask } from './programming-task'
 })
 export class AppComponent implements OnInit{
   public progTasks : ProgrammingTask[];
+  public selectedTask : ProgrammingTask;
+  public progLanguages : ProgrammingLanguage[];
+  public selectedLanguage : ProgrammingLanguage;
   
-  public constructor(private programmingTaskService : ProgrammingTasksService){
+  public constructor(private programmingTaskService : ProgrammingTasksService, private programmingLanguageService : ProgrammingLanguageService){
   }
 
 	ngOnInit() : void{
@@ -20,12 +25,31 @@ export class AppComponent implements OnInit{
 
   public getTasks() : void {
   	this.progTasks = [];
-  	this.programmingTaskService.getAllTasks().then(tasks =>
-  		 	this.progTasks = tasks
-		   );
+
+    let progTasks;
+  	var tasksPromise = this.programmingTaskService.getAllTasks()
+      .then(tasks => progTasks = tasks);
+
+    let progLangs;
+    var langPromise = this.programmingLanguageService.getAllLanguages()
+      .then(langs => progLangs = langs);
+
+    Promise.all([tasksPromise, langPromise])
+      .then(value => {
+      		 	this.progTasks = progTasks;
+            this.selectedTask = progTasks[0];
+
+            this.progLanguages = progLangs;
+            this.selectedLanguage = progLangs[0];
+          }
+  		   );
   }
 
   public checkTask() : void {
+    
+  }
 
+  public selectTask(task : ProgrammingTask ) : void{
+    this.selectedTask = task;
   }
 }

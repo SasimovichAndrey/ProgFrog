@@ -1,10 +1,13 @@
-<div *ngFor="let t of progTasks">
-  {{t.Description}}
-</div>
-<div id="code-box-container">
-	<form novalidate>
-		<textarea required></textarea>
-		<input type="button" (click)="checkTask()" value="Check"/>
-	</form>
-</div>
+	<select (ngModelChange)="selectTask($event)" [ngModel]="selectedTask">
+    	<option *ngFor="let task of progTasks" [ngValue]="task">{{task.Description}}</option>
+	</select>
+	<select (ngModelChange)="selectLanguage($event)" [ngModel]="selectedLanguage">
+    	<option *ngFor="let lang of progLanguages" [ngValue]="lang">{{lang.Name}}</option>
+	</select>
+	<div id="code-box-container">
+		<form novalidate>
+			<textarea required></textarea>
+			<input type="button" (click)="checkTask()" value="Check"/>
+		</form>
+	</div>
 
