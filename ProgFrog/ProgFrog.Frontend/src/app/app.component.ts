@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
   public selectedTask : ProgrammingTask;
   public progLanguages : ProgrammingLanguage[];
   public selectedLanguage : ProgrammingLanguage;
-  public taskRunResult : TaskRunResult = {};
+  public taskRunResult : TaskRunResult = new TaskRunResult();
   public userCode : string;
   
   public constructor(private programmingTaskService : ProgrammingTasksService, private programmingLanguageService : ProgrammingLanguageService, private taskRunnerService : TaskRunnerService){
