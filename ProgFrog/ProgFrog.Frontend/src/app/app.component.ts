@@ -18,7 +18,6 @@ export class AppComponent implements OnInit{
   public progLanguages : ProgrammingLanguage[];
   public selectedLanguage : ProgrammingLanguage;
   public taskRunResult : TaskRunResult = new TaskRunResult();
-  public userCode : string;
   
   public constructor(private programmingTaskService : ProgrammingTasksService, private programmingLanguageService : ProgrammingLanguageService, private taskRunnerService : TaskRunnerService){
   }
@@ -49,8 +48,8 @@ export class AppComponent implements OnInit{
   		   );
   }
 
-  public checkTask() : void {
-    this.taskRunnerService.run(this.selectedTask, this.userCode, this.selectedLanguage)
+  public checkTask(userCode: HTMLInputElement) : void {
+    this.taskRunnerService.run(this.selectedTask, userCode.value, this.selectedLanguage)
       .then(result => this.taskRunResult = result);
   }
 

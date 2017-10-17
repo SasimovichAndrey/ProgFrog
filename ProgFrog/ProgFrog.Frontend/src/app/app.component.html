@@ -1,12 +1,19 @@
-	<select (ngModelChange)="selectTask($event)" [ngModel]="selectedTask">
-    	<option *ngFor="let task of progTasks" [ngValue]="task">{{task.Description}}</option>
-	</select>
-	<select (ngModelChange)="selectLanguage($event)" [ngModel]="selectedLanguage">
-    	<option *ngFor="let lang of progLanguages" [ngValue]="lang">{{lang.Name}}</option>
-	</select>
-	<div id="code-box-container">
-		<textarea [ngModel]="userCode"></textarea>
-		<input type="button" (click)="checkTask()" value="Check"/>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-6">
+			<select (ngModelChange)="selectTask($event)" [ngModel]="selectedTask">
+		    	<option *ngFor="let task of progTasks" [ngValue]="task">{{task.Description}}</option>
+			</select>
+			<select (ngModelChange)="selectLanguage($event)" [ngModel]="selectedLanguage">
+		    	<option *ngFor="let lang of progLanguages" [ngValue]="lang">{{lang.Name}}</option>
+			</select>
+			<div id="code-box-container">
+				<textarea #userCode></textarea>
+				<input type="button" (click)="checkTask(userCode)" value="Check"/>
+			</div>
+			{{taskRunResult.isError}}
+		</div>
 	</div>
-	{{taskRunResult.isError}}
+	<span class="glyphicon glyphicon-trash glyph"></span>  Delete
+</div>
 
