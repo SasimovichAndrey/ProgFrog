@@ -11,15 +11,24 @@ import { ProgrammingLanguageService } from './programming-language.service'
 import { ProgrammingLanguageServiceFake } from './fakes/programming-language.service-fake'
 import { TaskRunnerService } from './task-runner.service';
 import { TaskRunnerServiceFake } from './fakes/task-runner.service-fake'
+import { AppHeaderComponent } from './app-header/app-header.component'
+import {MatSidenavModule, MatSelectModule} from '@angular/material';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatListModule} from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppHeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatListModule,
+    NoopAnimationsModule
   ],
   providers: [
   	{provide: ProgrammingTasksService, useClass: ProgrammingTasksServiceFake},

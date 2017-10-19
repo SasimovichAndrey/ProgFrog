@@ -7,7 +7,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ProgrammingLanguageServiceFake extends ProgrammingLanguageService{
 	private languages : ProgrammingLanguage[] = [
-		{Id: 1, Name: "CSharp"}
+		{Id: 1, Name: "CSharp"},
+		{Id: 2, Name: "Python"}
 	];
 
 	constructor(){

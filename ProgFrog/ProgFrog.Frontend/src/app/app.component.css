@@ -1,0 +1,42 @@
+.navbar{
+    border-radius:0px;
+    border:0px;
+    background-color: limegreen;
+}
+
+mat-sidenav{
+    width:200px;
+    overflow:hidden;
+}
+
+mat-sidenav ul{
+    padding-left:0px;
+}
+
+mat-sidenav ul li{
+    display: block;
+    height: 45px;
+    padding: 15px;
+    background-color: #ebe1e1;
+}
+
+mat-sidenav ul li:hover{
+    background-color: #d3d1d1;
+}
+
+mat-sidenav ul li.selected{
+    background-color: #d3d1d1;
+}
+
+.programming-area{
+    background-color: white;
+}
+
+.mat-input-infix{
+    border:none;
+}
+
+#userCodeTextArea{
+    width: 50%;
+    height: 300px;
+}
