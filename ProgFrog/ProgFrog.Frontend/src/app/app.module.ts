@@ -12,6 +12,7 @@ import { ProgrammingLanguageServiceFake } from './fakes/programming-language.ser
 import { TaskRunnerService } from './task-runner.service';
 import { TaskRunnerServiceFake } from './fakes/task-runner.service-fake'
 import { AppHeaderComponent } from './app-header/app-header.component'
+import { ProgTaskSelectorComponent } from './prog-task-selector/prog-task-selector.component'
 import {MatSidenavModule, MatSelectModule} from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatListModule} from '@angular/material';
@@ -19,7 +20,8 @@ import {MatListModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
+    ProgTaskSelectorComponent
   ],
   imports: [
     BrowserModule,
