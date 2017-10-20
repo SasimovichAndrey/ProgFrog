@@ -1,0 +1,5 @@
+<mat-form-field>
+    <mat-select placeholder="" [(ngModel)]="selectedLanguage" (change)="selectionChange($event)" >
+        <mat-option *ngFor="let lang of progLanguages" [value]="lang">{{ lang.Name }}</mat-option>
+    </mat-select>
+</mat-form-field>

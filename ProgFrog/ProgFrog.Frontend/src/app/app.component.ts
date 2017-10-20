@@ -13,47 +13,26 @@ import { TaskRunResult } from './task-run-result'
   providers: []
 })
 export class AppComponent implements OnInit{
-  public progTasks : ProgrammingTask[];
   public selectedTask : ProgrammingTask;
-  public progLanguages : ProgrammingLanguage[];
   public selectedLanguage : ProgrammingLanguage;
   public taskRunResult : TaskRunResult = new TaskRunResult();
   
-  public constructor(private programmingTaskService : ProgrammingTasksService, private programmingLanguageService : ProgrammingLanguageService, private taskRunnerService : TaskRunnerService){
+  public constructor(private taskRunnerService : TaskRunnerService){
   }
 
 	ngOnInit() : void{
-		this.getTasks();
 	}
 
-  public getTasks() : void {
-  	this.progTasks = [];
-
-    let progTasks;
-  	var tasksPromise = this.programmingTaskService.getAllTasks()
-      .then(tasks => progTasks = tasks);
-
-    let progLangs;
-    var langPromise = this.programmingLanguageService.getAllLanguages()
-      .then(langs => progLangs = langs);
-
-    Promise.all([tasksPromise, langPromise])
-      .then(value => {
-      		 	this.progTasks = progTasks;
-            this.selectedTask = progTasks[0];
-
-            this.progLanguages = progLangs;
-            this.selectedLanguage = progLangs[0];
-          }
-  		   );
-  }
-
-  public checkTask(userCode: HTMLInputElement) : void {
-    this.taskRunnerService.run(this.selectedTask, userCode.value, this.selectedLanguage)
+  checkTask(userCode: string) : void {
+    this.taskRunnerService.run(this.selectedTask, userCode, this.selectedLanguage)
       .then(result => this.taskRunResult = result);
   }
 
-  public selectTask(task : ProgrammingTask ) : void{
+  selectTask(task : ProgrammingTask ) : void{
     this.selectedTask = task;
+  }
+
+  selectLanguage(lang: ProgrammingLanguage){
+    this.selectedLanguage = lang;
   }
 }
