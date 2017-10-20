@@ -15,6 +15,9 @@
 			</div>
 			<div class="row-fluid">
 				<div class="col-xs-12">
+					<div id="taskDescriptionContainer">
+						{{selectedTask ? selectedTask.Description : ""}}
+					</div>
 					<div id="code-box-container">
 						<code-editor #codeEditor></code-editor>
 						<input type="button" (click)="checkTask(codeEditor.userCode)" [disabled]="!selectedTask" value="Check"/>

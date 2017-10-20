@@ -7,8 +7,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ProgrammingTasksServiceFake extends ProgrammingTasksService{
 	private tasks : ProgrammingTask[] = [
-		{Description: 'fake task 1', Id: '1'},
-		{Description: 'fake task 2', Id: '2'}
+		{Description: 'fake task 1', Id: '1', Title: 'Task #1'},
+		{Description: 'fake task 2', Id: '2', Title: 'Task #2'}
 	];
 
 	constructor(){
