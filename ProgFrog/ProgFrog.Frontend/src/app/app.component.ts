@@ -24,8 +24,10 @@ export class AppComponent implements OnInit{
 	}
 
   checkTask(userCode: string) : void {
-    this.taskRunnerService.run(this.selectedTask, userCode, this.selectedLanguage)
-      .then(result => this.taskRunResult = result);
+    if(userCode != "" && userCode != null){
+      this.taskRunnerService.run(this.selectedTask, userCode, this.selectedLanguage)
+        .then(result => this.taskRunResult = result);
+    }
   }
 
   selectTask(task : ProgrammingTask ) : void{

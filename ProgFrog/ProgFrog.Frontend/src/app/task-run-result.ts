@@ -1,3 +1,3 @@
 export class TaskRunResult{
-	public isError : boolean;
+	public IsRunError : boolean;
 }

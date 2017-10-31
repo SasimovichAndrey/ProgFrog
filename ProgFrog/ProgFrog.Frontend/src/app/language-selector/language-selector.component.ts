@@ -25,6 +25,7 @@ import {ProgrammingLanguageService} from '../programming-language.service';
             .then(langs => {
                 this.progLanguages = langs;
                 this.selectedLanguage = langs[0];
+                this.selectionChange(null);
             });
       }
 

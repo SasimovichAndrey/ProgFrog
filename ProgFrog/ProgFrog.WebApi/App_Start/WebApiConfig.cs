@@ -1,8 +1,4 @@
 ﻿using ProgFrog.WebApi.Filters;
-using ProgFrog.WebApi.JsonConverters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -26,10 +22,6 @@ namespace ProgFrog.WebApi
             );
 
             config.Filters.Add(new ModelValidationActionFilter());
-
-            var formatters = GlobalConfiguration.Configuration.Formatters;
-            var jsonFormatter = formatters.JsonFormatter;
-            jsonFormatter.SerializerSettings.Converters.Add(new IdentifierJsonConverter());
         }
     }
 }

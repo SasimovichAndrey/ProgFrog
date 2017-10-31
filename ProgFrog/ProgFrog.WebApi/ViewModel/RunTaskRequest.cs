@@ -6,10 +6,10 @@ namespace ProgFrog.WebApi.ViewModel
     public class RunTaskRequest
     {
         [Required]
-        public ProgrammingTask Task { get; set; }
+        public ProgrammingTaskViewModel Task { get; set; }
         [Required]
         public string UserCode { get; set; }
         [Required]
-        public ProgrammingLanguage ProgrammingLanguage { get; set; }
+        public ProgrammingLanguageViewModel ProgrammingLanguage { get; set; }
     }
 }

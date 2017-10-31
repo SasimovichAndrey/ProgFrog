@@ -37,9 +37,9 @@ import {MatListModule} from '@angular/material';
     NoopAnimationsModule
   ],
   providers: [
-  	{provide: ProgrammingTasksService, useClass: ProgrammingTasksServiceFake},
-    {provide: ProgrammingLanguageService, useClass: ProgrammingLanguageServiceFake},
-    {provide: TaskRunnerService, useClass: TaskRunnerServiceFake},
+  	{provide: ProgrammingTasksService, useClass: ProgrammingTasksService},
+    {provide: ProgrammingLanguageService, useClass: ProgrammingLanguageService},
+    {provide: TaskRunnerService, useClass: TaskRunnerService},
   	ConfigService
   ],
   bootstrap: [AppComponent]

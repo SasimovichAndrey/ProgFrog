@@ -1,8 +1,10 @@
 ﻿using ProgFrog.Interface.Data;
+using ProgFrog.Interface.Model;
 using ProgFrog.Interface.TaskRunning;
 using ProgFrog.Interface.TaskRunning.Runners;
 using ProgFrog.WebApi.Filters;
 using ProgFrog.WebApi.ViewModel;
+using ProgFrog.WebApi.ViewModel.Mappings;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -22,8 +24,11 @@ namespace ProgFrog.WebApi.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> RunTask(RunTaskRequest req)
         {
-            var taskRunner = _taskRunnerProvider.GetRunner(req.ProgrammingLanguage);
-            var dbTask = await _programmingTaskRepository.GetById(req.Task.Identifier);
+            var progLanguageEnum = MappingsHelper.MapProgrammingLanguage(req.ProgrammingLanguage);
+            var taskRunner = _taskRunnerProvider.GetRunner(progLanguageEnum);
+
+            var taskIdentifier = new GuidIdentifier(req.Task.Id);
+            var dbTask = await _programmingTaskRepository.GetById(taskIdentifier);
             if(dbTask != null)
             {
                 var result = await taskRunner.Run(dbTask, req.UserCode);
@@ -32,7 +37,7 @@ namespace ProgFrog.WebApi.Controllers
             }
             else
             {
-                return BadRequest($"Programming task with id={req.Task.Identifier} doesn't exist");
+                return BadRequest($"Programming task with id={req.Task.Id} doesn't exist");
             }
         }
     }

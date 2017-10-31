@@ -1,5 +1,6 @@
 ﻿using ProgFrog.Interface.Data;
 using ProgFrog.Interface.Model;
+using ProgFrog.WebApi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,13 @@ namespace ProgFrog.WebApi.Controllers
             _progTaskRepo = progTaskRepo;
         }
 
-        public async Task<IEnumerable<ProgrammingTask>> Get()
+        public async Task<IEnumerable<ProgrammingTaskViewModel>> Get()
         {
             var progTasks = await _progTaskRepo.GetAll();
 
-            return progTasks;
+            var vms = AutoMapper.Mapper.Map<IEnumerable<ProgrammingTaskViewModel>>(progTasks);
+
+            return vms;
         }
     }
 }

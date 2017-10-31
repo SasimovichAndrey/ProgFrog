@@ -1,4 +1,5 @@
 ﻿using ProgFrog.IoC;
+using ProgFrog.WebApi.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace ProgFrog.WebApi
         {
             UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            AutoMapperConfig.Configure();
         }
     }
 }

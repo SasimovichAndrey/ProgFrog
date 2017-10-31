@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TaskRunnerServiceFake extends TaskRunnerService{
 	private result : TaskRunResult = {
-		isError: true
+		IsRunError: true
 	};
 
 	constructor(){
